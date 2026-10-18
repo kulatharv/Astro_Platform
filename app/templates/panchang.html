@@ -1,0 +1,1057 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AstroLogic | Daily Panchang & Vedic Decision Engine</title>
+<meta name="description" content="Real-Time Vedic Decision Engine: Live Choghadiya countdown, Planetary Horas, Do's & Don'ts, Disha Shool remedies, and high-precision Ephemeris calculations.">
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Crimson+Pro:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --gold:#f5c16c;--gold2:#d89b3c;--gold-dim:rgba(245,193,108,.12);
+  --gold-border:rgba(245,193,108,.28);--blue:#9bdcff;--green:#4ade80;
+  --green-bg:rgba(74,222,128,.1);--green-border:rgba(74,222,128,.28);
+  --red:#f87171;--red-bg:rgba(248,113,113,.1);--red-border:rgba(248,113,113,.28);
+  --purple:#c084fc;--purple-bg:rgba(192,132,252,.1);
+  --surface:rgba(255,255,255,.04);--surface2:rgba(255,255,255,.07);
+  --border:rgba(255,255,255,.08);--border2:rgba(255,255,255,.13);
+  --text:#e8e8e8;--text-dim:rgba(232,232,232,.55);--hh:68px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:radial-gradient(ellipse 140% 70% at 50% -5%,#0c2a4a,#010812);
+     color:var(--text);font-family:'Inter',sans-serif;min-height:100vh;overflow-x:hidden}
+body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:0;
+  background-image:
+    radial-gradient(1px 1px at 12% 18%,rgba(155,220,255,.35),transparent),
+    radial-gradient(1px 1px at 78% 8%, rgba(245,193,108,.28),transparent),
+    radial-gradient(1.5px 1.5px at 33% 55%,rgba(155,220,255,.22),transparent),
+    radial-gradient(1px 1px at 91% 72%,rgba(245,193,108,.2),transparent)}
+
+/* ── HEADER ── */
+header{position:sticky;top:0;height:var(--hh);background:rgba(1,8,18,.95);
+  backdrop-filter:blur(24px);border-bottom:1px solid var(--border);
+  z-index:1000;display:flex;align-items:center}
+.hdr{width:100%;max-width:1200px;margin:0 auto;padding:0 24px;
+  display:flex;align-items:center;gap:20px}
+.brand{font-family:'Cinzel',serif;font-size:19px;font-weight:600;
+  color:var(--gold)!important;text-decoration:none;letter-spacing:1.5px;flex-shrink:0}
+.brand sup{font-size:9px;opacity:.6;font-weight:400;vertical-align:super}
+nav{flex:1}
+nav ul{display:flex;gap:2px;list-style:none;justify-content:center}
+nav ul li a{font-size:13px;font-weight:500;color:var(--text-dim)!important;
+  text-decoration:none;padding:6px 10px;border-radius:7px;transition:.2s;display:block}
+nav ul li a:hover,nav ul li a.active{color:var(--gold)!important;background:var(--gold-dim)}
+.hdr-btns{display:flex;gap:8px;flex-shrink:0}
+.btn-g{background:linear-gradient(135deg,var(--gold),var(--gold2));color:#000;
+  font-weight:600;font-size:12.5px;padding:7px 16px;border-radius:7px;
+  border:none;cursor:pointer;text-decoration:none;transition:.2s;
+  white-space:nowrap;font-family:'Inter',sans-serif;display:inline-flex;align-items:center;gap:6px}
+.btn-g:hover{filter:brightness(1.1);transform:translateY(-1px);color:#000}
+.btn-o{border:1px solid var(--gold-border);color:var(--gold);font-size:12.5px;font-weight:600;padding:7px 16px;border-radius:7px;background:transparent;cursor:pointer;text-decoration:none;transition:.2s;white-space:nowrap;font-family:'Inter',sans-serif;display:inline-flex;align-items:center;gap:6px}
+.btn-o:hover{background:var(--gold-dim);color:var(--gold)}
+.ham{display:none;flex-direction:column;gap:5px;cursor:pointer;margin-left:auto;padding:6px}
+.ham span{width:22px;height:2px;background:var(--text);border-radius:2px}
+.mob-nav{display:none;position:fixed;top:var(--hh);left:0;right:0;
+  background:rgba(1,8,18,.97);border-bottom:1px solid var(--border);
+  padding:16px 24px 24px;z-index:999;flex-direction:column;gap:4px}
+.mob-nav.open{display:flex}
+.mob-nav a{font-size:15px;color:var(--text-dim);text-decoration:none;padding:10px 14px;border-radius:8px;transition:.2s}
+.mob-nav a:hover,.mob-nav a.active{color:var(--gold);background:var(--gold-dim)}
+
+/* ── LAYOUT ── */
+.page-wrap{position:relative;z-index:1;padding-top:24px;padding-bottom:80px}
+.container{max-width:1160px;margin:0 auto;padding:0 24px}
+
+/* ── TOP CONTROL BAR ── */
+.controls-bar{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;margin-bottom:20px}
+.location-box{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.location-box select{
+  background:rgba(255,255,255,.06);border:1px solid var(--border2);color:#fff;
+  border-radius:8px;padding:9px 14px;font-size:13.5px;font-family:'Inter',sans-serif;cursor:pointer;min-width:180px}
+.location-box select option{background:#0d1f35;color:#fff}
+.tz-badge{font-size:11px;color:var(--blue);background:rgba(155,220,255,.08);padding:5px 10px;border-radius:6px;border:1px solid rgba(155,220,255,.2)}
+
+/* ── SECTION 1: LIVE COSMIC STATUS ── */
+.live-hero{
+  background:linear-gradient(135deg,rgba(245,193,108,.12),rgba(155,220,255,.04));
+  border:1px solid var(--gold-border);border-radius:18px;
+  padding:24px 28px;margin-bottom:24px;position:relative;overflow:hidden}
+.live-hero::after{content:'';position:absolute;top:-50%;right:-10%;width:240px;height:240px;background:radial-gradient(circle,rgba(245,193,108,.12),transparent 70%);border-radius:50%;pointer-events:none}
+.hero-top{display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:16px;margin-bottom:18px}
+.hero-title-group .eyebrow{font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--blue);display:block;margin-bottom:4px}
+.hero-title-group h1{font-family:'Cinzel',serif;font-size:clamp(20px,3.2vw,30px);color:var(--gold);line-height:1.2}
+.hero-title-group .date-sub{font-size:13px;color:var(--text-dim);margin-top:4px}
+
+.score-badge-card{
+  background:rgba(1,8,18,.7);border:1px solid var(--gold-border);border-radius:14px;
+  padding:12px 18px;text-align:center;min-width:140px}
+.score-badge-card .score-num{font-family:'Cinzel',serif;font-size:28px;font-weight:700;color:var(--gold)}
+.score-badge-card .score-lbl{font-size:10.5px;text-transform:uppercase;letter-spacing:1px;color:var(--text-dim);margin-top:2px}
+
+/* Live indicators row */
+.live-status-pills{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px;margin-top:16px}
+.status-pill{background:rgba(255,255,255,.04);border:1px solid var(--border);border-radius:12px;padding:14px 16px;display:flex;align-items:center;gap:12px}
+.status-pill.good{border-color:var(--green-border);background:var(--green-bg)}
+.status-pill.bad{border-color:var(--red-border);background:var(--red-bg)}
+.pill-icon{font-size:24px;flex-shrink:0}
+.pill-content .p-title{font-size:11px;text-transform:uppercase;letter-spacing:1px;color:var(--text-dim);font-weight:600}
+.pill-content .p-val{font-family:'Cinzel',serif;font-size:16px;font-weight:600;color:#fff;margin-top:2px}
+.pill-content .p-sub{font-size:11.5px;color:var(--text-dim);margin-top:2px}
+
+.period-summary-strip{
+  margin-top:16px;padding:12px 16px;border-radius:10px;background:rgba(255,255,255,.03);
+  border-left:3px solid var(--gold);font-size:13px;color:var(--text);display:flex;align-items:center;gap:10px}
+
+/* ── SECTION 2: TIMELINES (CHOGHADIYA & HORAS) ── */
+.timeline-card{background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:22px 24px;margin-bottom:24px}
+.tl-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;flex-wrap:wrap;gap:10px}
+.tl-title{font-family:'Cinzel',serif;font-size:15px;font-weight:600;color:var(--gold);display:flex;align-items:center;gap:8px}
+.tl-tabs{display:flex;gap:4px;background:rgba(255,255,255,.04);padding:4px;border-radius:8px;border:1px solid var(--border)}
+.tl-tab{padding:5px 12px;font-size:12px;font-weight:600;border:none;background:transparent;color:var(--text-dim);border-radius:6px;cursor:pointer;transition:.2s}
+.tl-tab.active{background:var(--gold-dim);color:var(--gold)}
+
+.chog-strip{display:grid;grid-template-columns:repeat(8,1fr);gap:6px;overflow-x:auto;padding-bottom:4px}
+.chog-cell{
+  background:rgba(255,255,255,.03);border:1px solid var(--border);border-radius:10px;
+  padding:10px 8px;text-align:center;transition:.2s}
+.chog-cell.good{border-color:var(--green-border);background:var(--green-bg)}
+.chog-cell.bad{border-color:var(--red-border);background:var(--red-bg)}
+.chog-cell.current{outline:2px solid var(--gold);box-shadow:0 0 12px rgba(245,193,108,.3)}
+.chog-cell .c-name{font-family:'Cinzel',serif;font-size:13px;font-weight:700;color:#fff}
+.chog-cell .c-time{font-size:10px;color:var(--text-dim);margin-top:4px}
+.chog-cell .c-planet{font-size:9.5px;color:var(--blue);margin-top:2px}
+
+/* ── SECTION 3: DETERMINISTIC DO'S & DON'TS ── */
+.advice-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:24px}
+.advice-card{background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:22px 24px}
+.advice-card.rec{border-color:var(--green-border)}
+.advice-card.avd{border-color:var(--red-border)}
+.advice-hd{font-family:'Cinzel',serif;font-size:14px;font-weight:600;margin-bottom:14px;display:flex;align-items:center;gap:8px}
+.advice-hd.rec{color:var(--green)}
+.advice-hd.avd{color:var(--red)}
+.advice-list{display:flex;flex-direction:column;gap:10px}
+.advice-item{display:flex;gap:12px;align-items:flex-start;padding:10px 12px;background:rgba(255,255,255,.02);border-radius:10px;border:1px solid var(--border)}
+.a-tag{font-size:10px;font-weight:700;padding:2px 7px;border-radius:4px;text-transform:uppercase;flex-shrink:0}
+.a-tag.rec{background:var(--green-bg);color:var(--green);border:1px solid var(--green-border)}
+.a-tag.avd{background:var(--red-bg);color:var(--red);border:1px solid var(--red-border)}
+.a-text{font-size:12.5px;color:var(--text);line-height:1.4}
+.a-reason{font-size:11px;color:var(--text-dim);margin-top:2px}
+
+/* Disha Shool compass strip */
+.disha-strip{
+  background:rgba(155,220,255,.04);border:1px solid rgba(155,220,255,.2);border-radius:14px;
+  padding:16px 20px;margin-bottom:24px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px}
+.disha-left{display:flex;align-items:center;gap:12px}
+.disha-icon{font-size:28px}
+.disha-title{font-size:11px;text-transform:uppercase;letter-spacing:1px;color:var(--blue);font-weight:700}
+.disha-val{font-size:14px;font-weight:600;color:#fff;margin-top:2px}
+.remedy-pill{background:rgba(245,193,108,.1);border:1px solid var(--gold-border);padding:6px 12px;border-radius:8px;font-size:12px;color:var(--gold)}
+
+/* ── SECTION 4: ADVANCED SACRED PANCHANGA (5 LIMBS & GOCHAR) ── */
+.sec-hd{display:flex;align-items:center;gap:10px;margin:28px 0 14px;
+  font-family:'Cinzel',serif;font-size:11.5px;font-weight:600;
+  letter-spacing:1.5px;text-transform:uppercase;color:var(--text-dim)}
+.sec-hd::after{content:'';flex:1;height:1px;background:var(--border)}
+.dot{width:6px;height:6px;border-radius:50%;flex-shrink:0}
+.dot-gold{background:var(--gold)}.dot-red{background:var(--red)}.dot-green{background:var(--green)}.dot-blue{background:var(--blue)}.dot-purple{background:var(--purple)}
+
+.g4{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:16px}
+.g3{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-bottom:16px}
+.g2{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:16px}
+
+.info-card{background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:18px 20px;transition:.3s}
+.info-card:hover{border-color:var(--border2);background:var(--surface2)}
+.info-card .lbl{font-size:10.5px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;color:var(--text-dim);margin-bottom:8px}
+.info-card .val{font-family:'Cinzel',serif;font-size:18px;font-weight:600;color:#fff;margin-bottom:3px}
+.info-card .sub{font-size:12px;color:var(--text-dim)}
+.prog-bar{height:3px;border-radius:2px;background:rgba(255,255,255,.08);margin-top:10px}
+.prog-fill{height:100%;border-radius:2px;background:linear-gradient(90deg,var(--gold),var(--gold2));transition:width 1.2s ease}
+
+.sun-card{background:rgba(245,193,108,.08);border:1px solid var(--gold-border);border-radius:14px;padding:18px 20px}
+.sun-card .lbl{font-size:10.5px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;color:var(--gold);margin-bottom:8px}
+.sun-card .val{font-family:'Cinzel',serif;font-size:22px;font-weight:700;color:var(--gold)}
+.sun-card .sub{font-size:12px;color:rgba(245,193,108,.6);margin-top:3px}
+
+.bad-card{background:var(--red-bg);border:1px solid var(--red-border);border-radius:14px;padding:18px 20px}
+.bad-card .lbl{font-size:10.5px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;color:var(--red);margin-bottom:8px}
+.bad-card .val{font-family:'Cinzel',serif;font-size:17px;font-weight:600;color:#fff}
+.bad-card .sub{font-size:11.5px;color:rgba(248,113,113,.7);margin-top:3px}
+
+.good-card{background:var(--green-bg);border:1px solid var(--green-border);border-radius:14px;padding:18px 20px}
+.good-card .lbl{font-size:10.5px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;color:var(--green);margin-bottom:8px}
+.good-card .val{font-family:'Cinzel',serif;font-size:17px;font-weight:600;color:#fff}
+.good-card .sub{font-size:11.5px;color:rgba(74,222,128,.7);margin-top:3px}
+
+.glass-table{background:var(--surface);border:1px solid var(--border);border-radius:14px;overflow:hidden;margin-bottom:24px}
+.glass-table table{width:100%;border-collapse:collapse}
+.glass-table thead th{background:rgba(245,193,108,.1);color:var(--gold);font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:1px;padding:12px 16px;text-align:left}
+.glass-table tbody tr{border-bottom:1px solid var(--border)}
+.glass-table tbody tr:last-child{border-bottom:none}
+.glass-table tbody tr:hover{background:rgba(255,255,255,.03)}
+.glass-table tbody td{padding:10px 16px;font-size:13.5px;vertical-align:middle}
+.retro-badge{font-size:10px;padding:2px 7px;border-radius:4px;background:var(--red-bg);color:var(--red);margin-left:6px}
+
+.event-list{display:flex;flex-direction:column;gap:10px}
+.event-row{display:flex;gap:16px;padding:14px 18px;border-radius:12px;background:rgba(255,255,255,.03);border:1px solid var(--border);align-items:center;transition:.2s}
+.event-row:hover{background:rgba(255,255,255,.05);border-color:var(--border2)}
+.event-row.today{background:rgba(245,193,108,.08);border-color:rgba(245,193,108,.28)}
+.event-date-col{min-width:68px;flex-shrink:0;text-align:center;padding:6px 8px;background:rgba(0,0,0,.25);border-radius:10px;border:1px solid var(--border)}
+.event-cal-day{font-family:'Cinzel',serif;font-size:20px;font-weight:700;color:var(--gold);line-height:1}
+.event-cal-mon{font-size:10px;color:var(--text-dim);text-transform:uppercase;letter-spacing:.8px;margin-top:4px}
+.event-icon-col{font-size:26px;flex-shrink:0}
+.event-content{flex:1;min-width:0}
+.event-name{font-size:14.5px;font-weight:600;color:#fff;display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.event-desc{font-size:12px;color:var(--text-dim);margin-top:3px;line-height:1.4}
+.event-tags{display:flex;gap:6px;flex-wrap:wrap;margin-top:6px}
+.event-tag{font-size:10px;font-weight:600;padding:2px 8px;border-radius:4px;background:rgba(255,255,255,.06);color:var(--text-dim);border:1px solid var(--border)}
+.event-tag.major{background:rgba(245,193,108,.12);color:var(--gold);border-color:var(--gold-border)}
+.event-tag.ekadashi{background:rgba(74,222,128,.1);color:var(--green);border-color:rgba(74,222,128,.25)}
+.event-tag.purnima{background:rgba(155,220,255,.1);color:var(--blue);border-color:rgba(155,220,255,.25)}
+.event-tag.amavasya{background:rgba(248,113,113,.1);color:var(--red);border-color:rgba(248,113,113,.25)}
+.event-tag.vrat{background:rgba(192,132,252,.1);color:var(--purple);border-color:rgba(192,132,252,.25)}
+.event-remedy{font-size:11.5px;color:rgba(245,193,108,.9);margin-top:6px;padding:4px 8px;background:rgba(245,193,108,.06);border-radius:6px;display:inline-block}
+
+/* ── DUAL-MODE TOGGLE ── */
+.mode-toggle{display:flex;background:rgba(255,255,255,.04);border:1px solid var(--border);border-radius:10px;padding:4px;margin-bottom:16px;width:fit-content}
+.mode-btn{padding:8px 20px;font-size:13px;font-weight:600;border:none;background:transparent;color:var(--text-dim);border-radius:8px;cursor:pointer;transition:.2s;font-family:'Inter',sans-serif;display:flex;align-items:center;gap:6px}
+.mode-btn.active{background:var(--gold-dim);color:var(--gold);border:1px solid var(--gold-border)}
+.mode-btn:hover:not(.active){background:rgba(255,255,255,.06)}
+
+/* ── PROFILE PANEL ── */
+.profile-panel{display:none;background:var(--surface);border:1px solid var(--border2);border-radius:14px;padding:18px 20px;margin-bottom:18px;animation:fadeIn .3s ease}
+.profile-panel.visible{display:block}
+@keyframes fadeIn{from{opacity:0;transform:translateY(-6px)}to{opacity:1;transform:translateY(0)}}
+.profile-row{display:flex;gap:10px;flex-wrap:wrap;align-items:flex-end}
+.profile-row .field{display:flex;flex-direction:column;gap:4px}
+.profile-row .field label{font-size:10px;text-transform:uppercase;letter-spacing:1px;color:var(--text-dim);font-weight:600}
+.profile-row .field input,.profile-row .field select{background:rgba(255,255,255,.06);border:1px solid var(--border2);color:#fff;border-radius:7px;padding:8px 12px;font-size:13px;font-family:'Inter',sans-serif;min-width:140px}
+.profile-chips{display:flex;gap:6px;margin-top:10px;flex-wrap:wrap}
+.profile-chip{padding:5px 12px;font-size:12px;font-weight:600;border-radius:6px;border:1px solid var(--border);background:rgba(255,255,255,.03);color:var(--text-dim);cursor:pointer;transition:.2s}
+.profile-chip.active{border-color:var(--gold-border);background:var(--gold-dim);color:var(--gold)}
+.profile-chip:hover{border-color:var(--gold-border)}
+.resolved-badge{display:inline-flex;align-items:center;gap:6px;padding:5px 12px;border-radius:6px;font-size:11.5px;font-weight:600;background:var(--green-bg);border:1px solid var(--green-border);color:var(--green);margin-top:8px}
+
+/* ── PERSONALIZATION CARDS ── */
+.personal-section{display:none;animation:fadeIn .3s ease}
+.personal-section.visible{display:block}
+.bala-cards{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:18px}
+.bala-card{border-radius:14px;padding:16px 18px;position:relative;overflow:hidden}
+.bala-card.tara{background:linear-gradient(135deg,rgba(192,132,252,.1),rgba(155,220,255,.05));border:1px solid rgba(192,132,252,.25)}
+.bala-card.chandra{background:linear-gradient(135deg,rgba(155,220,255,.1),rgba(74,222,128,.05));border:1px solid rgba(155,220,255,.25)}
+.bala-label{font-size:10px;text-transform:uppercase;letter-spacing:1.5px;font-weight:700;margin-bottom:6px}
+.bala-card.tara .bala-label{color:var(--purple)}
+.bala-card.chandra .bala-label{color:var(--blue)}
+.bala-name{font-family:'Cinzel',serif;font-size:18px;font-weight:700;color:#fff}
+.bala-cat{font-size:12px;color:var(--text-dim);margin-top:2px}
+.bala-advice{font-size:12px;color:var(--text);margin-top:8px;line-height:1.4;opacity:.85}
+
+.cat-scores{display:grid;grid-template-columns:repeat(5,1fr);gap:10px;margin-bottom:18px}
+.cat-score-card{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:14px 10px;text-align:center;transition:.3s}
+.cat-score-card:hover{border-color:var(--border2)}
+.cat-emoji{font-size:22px;margin-bottom:4px}
+.cat-name{font-size:10px;text-transform:uppercase;letter-spacing:1px;color:var(--text-dim);font-weight:600;margin-bottom:6px}
+.cat-bar-bg{height:4px;border-radius:2px;background:rgba(255,255,255,.08);margin-bottom:4px}
+.cat-bar-fill{height:100%;border-radius:2px;transition:width .8s ease}
+.cat-val{font-family:'Cinzel',serif;font-size:16px;font-weight:700;color:#fff}
+
+/* ── DECISION ASSISTANT ── */
+.decision-card{background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:22px 24px;margin-bottom:24px}
+.decision-hd{font-family:'Cinzel',serif;font-size:14px;font-weight:600;color:var(--gold);margin-bottom:14px;display:flex;align-items:center;gap:8px}
+.decision-btns{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:16px}
+.dec-btn{padding:8px 16px;font-size:12.5px;font-weight:600;border-radius:8px;border:1px solid var(--border);background:rgba(255,255,255,.03);color:var(--text-dim);cursor:pointer;transition:.2s;font-family:'Inter',sans-serif;display:flex;align-items:center;gap:6px}
+.dec-btn:hover,.dec-btn.active{border-color:var(--gold-border);background:var(--gold-dim);color:var(--gold)}
+.verdict-box{display:none;border-radius:14px;padding:18px 20px;margin-top:12px;animation:fadeIn .3s ease}
+.verdict-box.visible{display:block}
+.verdict-box.green{background:var(--green-bg);border:1px solid var(--green-border)}
+.verdict-box.gold{background:var(--gold-dim);border:1px solid var(--gold-border)}
+.verdict-box.red{background:var(--red-bg);border:1px solid var(--red-border)}
+.verdict-badge{font-family:'Cinzel',serif;font-size:18px;font-weight:700;margin-bottom:6px}
+.verdict-badge.green{color:var(--green)}.verdict-badge.gold{color:var(--gold)}.verdict-badge.red{color:var(--red)}
+.verdict-summary{font-size:13px;color:var(--text);margin-bottom:10px}
+.verdict-reasons{display:flex;flex-direction:column;gap:4px}
+.verdict-reason{font-size:12px;color:var(--text-dim);padding:4px 0}
+.verdict-next{margin-top:10px;padding:10px 14px;background:rgba(255,255,255,.04);border-radius:8px;font-size:12px;color:var(--text-dim)}
+.verdict-next strong{color:var(--gold)}
+
+@media(max-width:1024px){.g4{grid-template-columns:repeat(2,1fr)}.chog-strip{grid-template-columns:repeat(4,1fr)}.cat-scores{grid-template-columns:repeat(3,1fr)}}
+@media(max-width:768px){
+  nav ul,.hdr-btns{display:none}.ham{display:flex}
+  .advice-grid{grid-template-columns:1fr}
+  .g3,.g2{grid-template-columns:1fr}
+  .chog-strip{grid-template-columns:repeat(2,1fr)}
+  .bala-cards{grid-template-columns:1fr}
+  .cat-scores{grid-template-columns:repeat(2,1fr)}
+  .decision-btns{flex-direction:column}
+}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="hdr">
+    <a class="brand" href="/">Astro<sup>✦</sup>Logic</a>
+    <nav><ul>
+      <li><a href="/" data-i18n="navbar.home">{{ t.get('navbar.home', 'Home') }}</a></li>
+      <li><a href="/panchang" class="active" data-i18n="navbar.panchang">{{ t.get('navbar.panchang', 'Panchang') }}</a></li>
+      <li><a href="/kundali" data-i18n="navbar.kundali">{{ t.get('navbar.kundali', 'Kundali') }}</a></li>
+      <li><a href="/horoscope" data-i18n="navbar.horoscope">{{ t.get('navbar.horoscope', 'Horoscope') }}</a></li>
+      <li><a href="/prediction" data-i18n="navbar.prediction">{{ t.get('navbar.prediction', 'Predictions') }}</a></li>
+      <li><a href="/blogs" data-i18n="navbar.blogs">{{ t.get('navbar.blogs', 'Blogs') }}</a></li>
+      <li><a href="/about" data-i18n="navbar.about">{{ t.get('navbar.about', 'About') }}</a></li>
+      <li><a href="/profile" data-i18n="navbar.profile">{{ t.get('navbar.profile', 'Profile') }}</a></li>
+    </ul></nav>
+    <div class="hdr-btns">
+      <select id="languageSelector"
+              class="lang-select"
+              onchange="changeLanguage(this.value)"
+              style="
+                background:rgba(255,255,255,.05);
+                color:#f5c16c;
+                border:1px solid rgba(245,193,108,.28);
+                border-radius:7px;
+                padding:7px 10px;
+                cursor:pointer;
+              ">
+          <option value="en" {% if lang == 'en' %}selected{% endif %}>🇬🇧 EN - English</option>
+          <option value="hi" {% if lang == 'hi' %}selected{% endif %}>🇮🇳 HI - हिन्दी</option>
+          <option value="mr" {% if lang == 'mr' %}selected{% endif %}>🇮🇳 MR - मराठी</option>
+          <option value="gu" {% if lang == 'gu' %}selected{% endif %}>🇮🇳 GU - ગુજરાતી</option>
+          <option value="ta" {% if lang == 'ta' %}selected{% endif %}>🇮🇳 TA - தமிழ்</option>
+          <option value="te" {% if lang == 'te' %}selected{% endif %}>🇮🇳 TE - తెలుగు</option>
+          <option value="kn" {% if lang == 'kn' %}selected{% endif %}>🇮🇳 KN - ಕನ್ನಡ</option>
+          <option value="bn" {% if lang == 'bn' %}selected{% endif %}>🇮🇳 BN - বাংলা</option>
+      </select>
+      <a href="/profile" class="btn-o">Profile</a><a href="/logout" class="btn-o">Logout</a><a href="/kundali" class="btn-g">Generate Kundali</a>
+    </div>
+    <div class="ham" onclick="document.getElementById('mn').classList.toggle('open')">
+      <span></span><span></span><span></span>
+    </div>
+  </div>
+</header>
+
+<div class="mob-nav" id="mn">
+  <a href="/">Home</a><a href="/panchang.html" class="active">Panchang</a>
+  <a href="/kundali">Kundali</a><a href="/horoscope">Horoscope</a>
+  <a href="/prediction">Predictions</a><a href="/blogs">Blogs</a><a href="/about">About</a>
+</div>
+
+<div class="page-wrap">
+<div class="container">
+
+  <!-- TOP CONTROL BAR -->
+  <div class="controls-bar">
+    <div class="location-box">
+      <select id="citySelect" onchange="loadPanchang()">
+        <option value="Pune">Pune (Maharashtra)</option>
+        <option value="Mumbai">Mumbai (Maharashtra)</option>
+        <option value="Delhi">Delhi / NCR</option>
+        <option value="Bangalore">Bangalore (Karnataka)</option>
+        <option value="Chennai">Chennai (Tamil Nadu)</option>
+        <option value="Kolkata">Kolkata (West Bengal)</option>
+        <option value="Hyderabad">Hyderabad (Telangana)</option>
+        <option value="Ahmedabad">Ahmedabad (Gujarat)</option>
+        <option value="Jaipur">Jaipur (Rajasthan)</option>
+        <option value="Varanasi">Varanasi (Uttar Pradesh)</option>
+        <option value="Ujjain">Ujjain (Madhya Pradesh)</option>
+        <option value="London">London (UK)</option>
+        <option value="New York">New York (USA)</option>
+        <option value="San Francisco">San Francisco (USA)</option>
+        <option value="Dubai">Dubai (UAE)</option>
+        <option value="Singapore">Singapore</option>
+        <option value="Sydney">Sydney (Australia)</option>
+      </select>
+      <button onclick="detectGPSLocation()" class="btn-o" title="Detect GPS coordinates" data-i18n="panchang.btn_gps">{{ t.get('panchang.btn_gps', '📍 Use GPS') }}</button>
+      <span class="tz-badge" id="tzBadge">Timezone: Asia/Kolkata</span>
+    </div>
+    <div style="display:flex;gap:8px">
+      <button onclick="downloadCalendarICS()" class="btn-o" title="Export to Google & Apple Calendar" data-i18n="panchang.btn_calendar">{{ t.get('panchang.btn_calendar', '📅 Add to Calendar (.ics)') }}</button>
+      <button onclick="loadPanchang()" class="btn-g" data-i18n="panchang.btn_refresh">{{ t.get('panchang.btn_refresh', '⟳ Refresh') }}</button>
+    </div>
+  </div>
+
+  <!-- DUAL-MODE TOGGLE + PROFILE -->
+  <div class="mode-toggle" id="modeToggle">
+    <button class="mode-btn active" id="modeGeneral" onclick="setMode('general')" data-i18n="panchang.btn_general">{{ t.get('panchang.btn_general', '🌍 General') }}</button>
+    <button class="mode-btn" id="modePersonal" onclick="setMode('personalized')" data-i18n="panchang.btn_mypanchang">{{ t.get('panchang.btn_mypanchang', '✨ My Panchang') }}</button>
+  </div>
+
+  <!-- PROFILE PANEL (hidden until 'My Panchang' is active) -->
+  <div class="profile-panel" id="profilePanel">
+    <div class="profile-row">
+      <div class="field"><label>Name</label><input type="text" id="profileName" placeholder="Your name"></div>
+      <div class="field"><label>Birth Date</label><input type="date" id="profileBirthDate"></div>
+      <div class="field"><label>Birth Time</label><input type="time" id="profileBirthTime"></div>
+      <div class="field"><label>Birth Place</label><input type="text" id="profileBirthPlace" value="Pune" placeholder="City"></div>
+      <div class="field" style="display:flex;flex-direction:row;align-items:flex-end;gap:6px">
+        <button class="btn-g" onclick="resolveProfile()" style="white-space:nowrap">🔮 Resolve Profile</button>
+      </div>
+    </div>
+    <div id="profileResolvedInfo" style="display:none">
+      <div class="resolved-badge">✅ <span id="resolvedText">Rashi: — | Nakshatra: —</span></div>
+    </div>
+    <div class="profile-chips" id="profileChips"></div>
+  </div>
+
+  <!-- PERSONALIZED SECTION (appears only in My Panchang mode with profile) -->
+  <div class="personal-section" id="personalSection">
+    <!-- Tara Bala + Chandra Bala Cards -->
+    <div class="bala-cards">
+      <div class="bala-card tara" id="taraCard">
+        <div class="bala-label">☾ Tara Bala</div>
+        <div class="bala-name" id="taraName">—</div>
+        <div class="bala-cat" id="taraCat"></div>
+        <div class="bala-advice" id="taraAdvice"></div>
+      </div>
+      <div class="bala-card chandra" id="chandraCard">
+        <div class="bala-label">☽ Chandra Bala</div>
+        <div class="bala-name" id="chandraName">—</div>
+        <div class="bala-cat" id="chandraCat"></div>
+        <div class="bala-advice" id="chandraAdvice"></div>
+      </div>
+    </div>
+    <!-- Category Scores -->
+    <div class="cat-scores" id="catScores"></div>
+  </div>
+
+  <!-- DECISION ASSISTANT -->
+  <div class="decision-card" id="decisionCard" style="display:none">
+    <div class="decision-hd">🧭 Vedic Decision Assistant</div>
+    <div class="decision-btns" id="decisionBtns">
+      <button class="dec-btn" onclick="askDecision('travel')">✈️ Travel</button>
+      <button class="dec-btn" onclick="askDecision('investment')">💰 Investment</button>
+      <button class="dec-btn" onclick="askDecision('meeting')">🤝 Meeting</button>
+      <button class="dec-btn" onclick="askDecision('spiritual')">🕉️ Spiritual</button>
+      <button class="dec-btn" onclick="askDecision('purchase')">🛒 Purchase</button>
+    </div>
+    <div class="verdict-box" id="verdictBox"></div>
+  </div>
+
+  <!-- SECTION 1: LIVE COSMIC STATUS HERO -->
+  <div class="live-hero">
+    <div class="hero-top">
+      <div class="hero-title-group">
+        <span class="eyebrow" id="eyebrowText" data-i18n="panchang.eyebrow">{{ t.get('panchang.eyebrow', 'Vedic Daily Decision Engine') }}</span>
+        <h1 id="dateDisplay" data-i18n="panchang.title">{{ t.get('panchang.title', 'Daily Panchang') }}</h1>
+        <div class="date-sub" id="weekdayDisplay">Loading cosmic calendar...</div>
+      </div>
+      <div class="score-badge-card">
+        <div class="score-num" id="todayScore">8.5</div>
+        <div class="score-lbl" data-i18n="panchang.score_lbl">{{ t.get('panchang.score_lbl', 'Cosmic Day Score') }}</div>
+      </div>
+    </div>
+
+    <!-- Live Status Indicators -->
+    <div class="live-status-pills">
+      <div class="status-pill good" id="activeChogPill">
+        <div class="pill-icon">⏳</div>
+        <div class="pill-content">
+          <div class="p-title" data-i18n="panchang.active_choghadiya">{{ t.get('panchang.active_choghadiya', 'Active Choghadiya') }}</div>
+          <div class="p-val" id="activeChogVal">Loading...</div>
+          <div class="p-sub" id="activeChogTimer">Calculating countdown...</div>
+        </div>
+      </div>
+
+      <div class="status-pill" id="activeHoraPill">
+        <div class="pill-icon">⚡</div>
+        <div class="pill-content">
+          <div class="p-title" data-i18n="panchang.planetary_hora">{{ t.get('panchang.planetary_hora', 'Planetary Hora') }}</div>
+          <div class="p-val" id="activeHoraVal">Loading...</div>
+          <div class="p-sub" id="activeHoraSub">Sun hour active</div>
+        </div>
+      </div>
+
+      <div class="status-pill good" id="nextWindowPill">
+        <div class="pill-icon">🌟</div>
+        <div class="pill-content">
+          <div class="p-title" data-i18n="panchang.next_auspicious">{{ t.get('panchang.next_auspicious', 'Next Auspicious Window') }}</div>
+          <div class="p-val" id="nextWinVal">Abhijit Muhurat</div>
+          <div class="p-sub" id="nextWinTime">Calculating...</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Period summary strip -->
+    <div class="period-summary-strip" id="periodSummaryStrip">
+      <span>✦</span> <span id="periodSummaryText">Auspicious window active. Ideal for signing agreements and important communications.</span>
+    </div>
+  </div>
+
+  <!-- SECTION 2: CHOGHADIYA TIMELINE -->
+  <div class="timeline-card">
+    <div class="tl-header">
+      <div class="tl-title"><span>⏳</span> Today's 16-Period Choghadiya Timeline</div>
+      <div class="tl-tabs">
+        <button class="tl-tab active" id="tabDayChog" onclick="switchChogTab('day')">☀️ Day Choghadiya</button>
+        <button class="tl-tab" id="tabNightChog" onclick="switchChogTab('night')">🌙 Night Choghadiya</button>
+      </div>
+    </div>
+    <div class="chog-strip" id="chogStripContainer">
+      <!-- Dynamic Choghadiya segments rendered here -->
+    </div>
+  </div>
+
+  <!-- SECTION 3: DETERMINISTIC DO'S & DON'TS -->
+  <div class="sec-hd"><span class="dot dot-green"></span>Actionable Vedic Guidance — What to Do & Avoid Today</div>
+  <div class="advice-grid">
+    <div class="advice-card rec">
+      <div class="advice-hd rec"><span>✅</span> Recommended Actions (Do's Today)</div>
+      <div class="advice-list" id="recList">
+        <!-- Rendered via JS -->
+      </div>
+    </div>
+
+    <div class="advice-card avd">
+      <div class="advice-hd avd"><span>🚫</span> Actions to Avoid (Don'ts Today)</div>
+      <div class="advice-list" id="avoidList">
+        <!-- Rendered via JS -->
+      </div>
+    </div>
+  </div>
+
+  <!-- Disha Shool Compass Strip -->
+  <div class="disha-strip">
+    <div class="disha-left">
+      <div class="disha-icon">🧭</div>
+      <div>
+        <div class="disha-title">Today's Disha Shool (Prohibited Travel Direction)</div>
+        <div class="disha-val" id="dishaVal">Direction: West (Pashchim)</div>
+      </div>
+    </div>
+    <div class="remedy-pill" id="dishaRemedy">Vedic Remedy: Consume betel leaf or ghee before departure</div>
+  </div>
+
+  <!-- SECTION 4: FIVE SACRED ELEMENTS -->
+  <div class="sec-hd"><span class="dot dot-gold"></span>Panchanga — Five Sacred Limbs</div>
+  <div class="g4">
+    <div class="info-card">
+      <div class="lbl">Tithi</div>
+      <div class="val" id="tithi">—</div>
+      <div class="sub" id="tithiSub"></div>
+      <div class="prog-bar"><div class="prog-fill" id="tithiBar" style="width:0%"></div></div>
+    </div>
+    <div class="info-card">
+      <div class="lbl">Nakshatra</div>
+      <div class="val" id="nakshatra">—</div>
+      <div class="sub" id="nakshatraSub"></div>
+    </div>
+    <div class="info-card">
+      <div class="lbl">Yoga</div>
+      <div class="val" id="yoga">—</div>
+      <div class="sub" id="yogaSub"></div>
+    </div>
+    <div class="info-card">
+      <div class="lbl">Karana</div>
+      <div class="val" id="karana">—</div>
+      <div class="sub" id="karanaSub"></div>
+    </div>
+  </div>
+
+  <!-- SUN & MOON TIMES -->
+  <div class="g2">
+    <div class="sun-card"><div class="lbl">🌅 Local Sunrise</div><div class="val" id="sunrise">—</div><div class="sub">Golden hour begins</div></div>
+    <div class="sun-card"><div class="lbl">🌇 Local Sunset</div><div class="val" id="sunset">—</div><div class="sub">Evening Sandhya</div></div>
+  </div>
+
+  <!-- INAUSPICIOUS & AUSPICIOUS MUHURATS -->
+  <div class="sec-hd"><span class="dot dot-red"></span>Inauspicious Windows (Varjya)</div>
+  <div class="g3">
+    <div class="bad-card"><div class="lbl">☿ Rahu Kaal</div><div class="val" id="rahu">—</div><div class="sub">Avoid starting new work</div></div>
+    <div class="bad-card"><div class="lbl">♄ Yamaganda</div><div class="val" id="yamaganda">—</div><div class="sub">Yama's inauspicious period</div></div>
+    <div class="bad-card"><div class="lbl">☽ Gulika Kaal</div><div class="val" id="gulika">—</div><div class="sub">Avoid signing deeds</div></div>
+  </div>
+
+  <div class="sec-hd"><span class="dot dot-green"></span>Auspicious Muhurats</div>
+  <div class="g2">
+    <div class="good-card"><div class="lbl">☀ Abhijit Muhurat</div><div class="val" id="abhijit">—</div><div class="sub">Most powerful solar window</div></div>
+    <div class="good-card"><div class="lbl">🌄 Brahma Muhurat</div><div class="val" id="brahma">—</div><div class="sub">Best for meditation &amp; study</div></div>
+  </div>
+
+  <!-- PLANETARY GOCHAR TRANSITS -->
+  <div class="sec-hd"><span class="dot dot-blue"></span>Planetary Positions (Gochar / Transits)</div>
+  <div class="glass-table">
+    <table>
+      <thead><tr><th>Planet (Graha)</th><th>Sign (Rashi)</th><th>Degree</th><th>Nakshatra</th><th>Status</th></tr></thead>
+      <tbody id="planetTable">
+        <tr><td colspan="5" style="text-align:center;padding:16px;color:var(--text-dim)">Loading planetary transits...</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- UPCOMING FESTIVALS -->
+  <div class="sec-hd"><span class="dot dot-purple"></span>Upcoming Hindu Events &amp; Festivals</div>
+  <div class="event-list" id="eventList">
+    <div style="text-align:center;padding:16px;color:var(--text-dim)">Loading festivals...</div>
+  </div>
+
+</div>
+</div>
+
+<footer>© 2026 AstroLogic · Enterprise Vedic Decision Engine · Swiss Ephemeris Precision</footer>
+
+<script>
+let currentPanchangData = null;
+let currentChogTab = 'day';
+let userCustomCoords = null;
+
+// ── Clock & Live Countdown ───────────────────────────────────
+setInterval(() => {
+  if (currentPanchangData && currentPanchangData.current_choghadiya) {
+    const chog = currentPanchangData.current_choghadiya;
+    const timerEl = document.getElementById('activeChogTimer');
+    if (timerEl && chog.time_remaining_str) {
+      timerEl.textContent = `Ends in ${chog.time_remaining_str}`;
+    }
+  }
+}, 1000);
+
+// ── Tab Switching ────────────────────────────────────────────
+function switchChogTab(tab) {
+  currentChogTab = tab;
+  document.getElementById('tabDayChog').classList.toggle('active', tab === 'day');
+  document.getElementById('tabNightChog').classList.toggle('active', tab === 'night');
+  if (currentPanchangData) renderChoghadiyaStrip(currentPanchangData);
+}
+
+// ── Render Choghadiya Strip ──────────────────────────────────
+function renderChoghadiyaStrip(d) {
+  const container = document.getElementById('chogStripContainer');
+  if (!container) return;
+  const list = currentChogTab === 'day' ? (d.choghadiya_day || []) : (d.choghadiya_night || []);
+  const currentName = d.current_choghadiya ? d.current_choghadiya.name : '';
+
+  container.innerHTML = list.map(c => {
+    const isGood = c.is_auspicious;
+    const isCurrent = c.name === currentName && currentChogTab === (new Date().getHours() >= 6 && new Date().getHours() < 18 ? 'day' : 'night');
+    return `
+      <div class="chog-cell ${isGood ? 'good' : 'bad'} ${isCurrent ? 'current' : ''}">
+        <div class="c-name">${c.name}</div>
+        <div class="c-time">${c.start} - ${c.end}</div>
+        <div class="c-planet">🪐 ${c.ruling_planet}</div>
+      </div>`;
+  }).join('');
+}
+
+// ── Update Full UI ───────────────────────────────────────────
+function updatePanchangUI(d) {
+  currentPanchangData = d;
+  
+  // Header / Date
+  const dt = new Date(d.date_str || new Date());
+  document.getElementById('dateDisplay').textContent = dt.toLocaleDateString('en-IN', {weekday:'long', day:'numeric', month:'long', year:'numeric'});
+  document.getElementById('weekdayDisplay').textContent = `${d.vara || 'Today'} · Samvat ${d.samvat ? d.samvat.vikram_samvat : '2083'}`;
+  document.getElementById('tzBadge').textContent = `Timezone: ${d.resolved_timezone || 'Asia/Kolkata'}`;
+  
+  // Score
+  if (d.today_score) {
+    document.getElementById('todayScore').textContent = d.today_score.toFixed(1);
+  }
+
+  // Active Choghadiya
+  if (d.current_choghadiya) {
+    const ch = d.current_choghadiya;
+    document.getElementById('activeChogVal').textContent = `${ch.name} (${ch.label})`;
+    document.getElementById('activeChogTimer').textContent = `Ends in ${ch.time_remaining_str || ch.time_remaining_mins + ' mins'}`;
+    const pill = document.getElementById('activeChogPill');
+    if (pill) pill.className = `status-pill ${ch.is_auspicious ? 'good' : 'bad'}`;
+  }
+
+  // Active Hora
+  if (d.current_hora) {
+    document.getElementById('activeHoraVal').textContent = `${d.current_hora.planet} Hora`;
+    document.getElementById('activeHoraSub').textContent = `Hour #${d.current_hora.hour_number} (${d.current_hora.start} - ${d.current_hora.end})`;
+  }
+
+  // Next Auspicious Window
+  if (d.next_auspicious_window) {
+    const nw = d.next_auspicious_window;
+    document.getElementById('nextWinVal').textContent = nw.name;
+    document.getElementById('nextWinTime').textContent = `${nw.start} - ${nw.end} (${nw.time_until_start || 'Upcoming'})`;
+  }
+
+  // Summary
+  if (d.current_period_summary) {
+    document.getElementById('periodSummaryText').textContent = d.current_period_summary;
+  }
+
+  // Render Choghadiya timeline
+  renderChoghadiyaStrip(d);
+
+  // Do's & Don'ts
+  if (d.dos_and_donts) {
+    const recs = d.dos_and_donts.recommended || [];
+    document.getElementById('recList').innerHTML = recs.map(r => `
+      <div class="advice-item">
+        <span class="a-tag rec">${r.category || 'Do'}</span>
+        <div>
+          <div class="a-text">${r.action}</div>
+          <div class="a-reason">✦ ${r.reason}</div>
+        </div>
+      </div>`).join('');
+
+    const avds = d.dos_and_donts.avoid || [];
+    document.getElementById('avoidList').innerHTML = avds.map(a => `
+      <div class="advice-item">
+        <span class="a-tag avd">${a.category || 'Avoid'}</span>
+        <div>
+          <div class="a-text">${a.action}</div>
+          <div class="a-reason">✦ ${a.reason}</div>
+        </div>
+      </div>`).join('');
+  }
+
+  // Disha Shool
+  if (d.disha_shool) {
+    document.getElementById('dishaVal').textContent = `Direction: ${d.disha_shool.direction} (${d.disha_shool.sanskrit || ''})`;
+    document.getElementById('dishaRemedy').textContent = `Vedic Remedy: ${d.disha_shool.remedy}`;
+  }
+
+  // Five Elements
+  const setT = (id, val) => { const el = document.getElementById(id); if (el) el.textContent = val || '—'; };
+  setT('tithi', d.tithi || d.tithi_name);
+  setT('tithiSub', d.paksha ? `${d.paksha} Paksha · Ends ${d.tithi_end || ''}` : '');
+  const tBar = document.getElementById('tithiBar');
+  if (tBar) tBar.style.width = Math.min(parseFloat(d.tithi_progress) || 50, 100) + '%';
+
+  setT('nakshatra', d.nakshatra);
+  setT('nakshatraSub', d.nakshatra_end ? `Until ${d.nakshatra_end}` : (d.nakshatra_pada ? `Pada ${d.nakshatra_pada}` : ''));
+  setT('yoga', d.yoga || d.yoga_name);
+  setT('yogaSub', d.yoga_end ? `Until ${d.yoga_end}` : '');
+  setT('karana', d.karana || d.karana_name);
+  setT('karanaSub', d.karana_end ? `Until ${d.karana_end}` : '');
+
+  setT('sunrise', d.sunrise);
+  setT('sunset', d.sunset);
+  setT('rahu', d.rahu || d.rahu_kaal);
+  setT('yamaganda', d.yamaganda);
+  setT('gulika', d.gulika);
+  setT('abhijit', d.abhijit || d.abhijit_muhurta);
+  setT('brahma', d.brahma);
+
+  // Planets Table
+  const planets = d.planets || [];
+  const pTable = document.getElementById('planetTable');
+  if (pTable) {
+    pTable.innerHTML = planets.length
+      ? planets.map(p => `<tr>
+           <td><strong>${p.name}</strong></td>
+           <td>${p.sign || '—'}</td>
+           <td style="font-family:monospace;font-size:12px">${p.degree || '—'}</td>
+           <td>${p.nakshatra || '—'}</td>
+           <td>${p.retrograde ? '<span class="retro-badge">⟲ Retrograde</span>' : '<span style="color:var(--green);font-size:12px">Direct ▶</span>'}</td>
+         </tr>`).join('')
+      : '<tr><td colspan="5" style="text-align:center;padding:16px">Positions unavailable</td></tr>';
+  }
+}
+
+// ── Personalization State ────────────────────────────────────
+let currentMode = 'general';
+let activeProfile = null;  // { name, rashi, nakshatra, birth_date, birth_time, birth_place }
+let savedProfiles = JSON.parse(localStorage.getItem('vedic_profiles') || '[]');
+
+function setMode(mode) {
+  currentMode = mode;
+  document.getElementById('modeGeneral').classList.toggle('active', mode === 'general');
+  document.getElementById('modePersonal').classList.toggle('active', mode === 'personalized');
+  document.getElementById('profilePanel').classList.toggle('visible', mode === 'personalized');
+  document.getElementById('personalSection').classList.toggle('visible', mode === 'personalized' && activeProfile);
+  document.getElementById('decisionCard').style.display = (mode === 'personalized') ? 'block' : 'none';
+  loadPanchang();
+}
+
+function renderProfileChips() {
+  const chips = document.getElementById('profileChips');
+  chips.innerHTML = savedProfiles.map((p, i) => `
+    <div class="profile-chip ${activeProfile && activeProfile.name === p.name ? 'active' : ''}" onclick="activateProfile(${i})">
+      ${p.name || 'Profile ' + (i+1)} · ${p.rashi || '?'}
+    </div>
+  `).join('');
+}
+
+function activateProfile(index) {
+  activeProfile = savedProfiles[index];
+  document.getElementById('profileResolvedInfo').style.display = 'block';
+  document.getElementById('resolvedText').textContent = `Rashi: ${activeProfile.rashi} | Nakshatra: ${activeProfile.nakshatra}`;
+  document.getElementById('personalSection').classList.add('visible');
+  renderProfileChips();
+  loadPanchang();
+}
+
+async function resolveProfile() {
+  const name = document.getElementById('profileName').value.trim() || 'Profile';
+  const bDate = document.getElementById('profileBirthDate').value;
+  const bTime = document.getElementById('profileBirthTime').value;
+  const bPlace = document.getElementById('profileBirthPlace').value || 'Pune';
+
+  if (!bDate) { alert('Birth date is required.'); return; }
+
+  try {
+    const payload = { name, birth_date: bDate, birth_time: bTime || null, birth_place: bPlace };
+    const res = await fetch('/api/panchang/resolve-profile', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload)
+    });
+    if (!res.ok) throw new Error(`HTTP ${res.status}`);
+    const data = await res.json();
+
+    activeProfile = {
+      name: data.name || name,
+      rashi: data.rashi,
+      nakshatra: data.nakshatra,
+      nakshatra_pada: data.nakshatra_pada,
+      birth_date: bDate,
+      birth_time: bTime,
+      birth_place: bPlace
+    };
+
+    // Save to localStorage
+    const exists = savedProfiles.findIndex(p => p.name === activeProfile.name);
+    if (exists >= 0) savedProfiles[exists] = activeProfile;
+    else savedProfiles.push(activeProfile);
+    localStorage.setItem('vedic_profiles', JSON.stringify(savedProfiles));
+
+    document.getElementById('profileResolvedInfo').style.display = 'block';
+    document.getElementById('resolvedText').textContent = `Rashi: ${data.rashi} | Nakshatra: ${data.nakshatra} (Pada ${data.nakshatra_pada})`;
+    document.getElementById('personalSection').classList.add('visible');
+    renderProfileChips();
+    loadPanchang();
+  } catch(e) {
+    console.error('Profile resolution error:', e);
+    alert('Failed to resolve profile. Please check your inputs.');
+  }
+}
+
+function renderPersonalization(p) {
+  if (!p) return;
+  // Tara Bala
+  const t = p.tara_bala;
+  if (t) {
+    document.getElementById('taraName').textContent = t.tara_name;
+    document.getElementById('taraCat').textContent = `${t.category} · Tara #${t.tara_number}`;
+    document.getElementById('taraAdvice').textContent = t.advice || '';
+    document.getElementById('taraCard').style.borderColor = t.is_auspicious ? 'rgba(74,222,128,.35)' : 'rgba(248,113,113,.35)';
+  }
+  // Chandra Bala
+  const c = p.chandra_bala;
+  if (c) {
+    document.getElementById('chandraName').textContent = c.status;
+    document.getElementById('chandraCat').textContent = `${c.house_distance}th House · ${c.desc ? c.desc.split('—')[0].trim() : ''}`;
+    document.getElementById('chandraAdvice').textContent = c.desc || '';
+    document.getElementById('chandraCard').style.borderColor = c.is_auspicious ? 'rgba(74,222,128,.35)' : 'rgba(248,113,113,.35)';
+  }
+  // Category Scores
+  const cats = p.category_scores;
+  if (cats) {
+    const icons = { career: '💼', finance: '💰', relationships: '💕', health: '🏥', spiritual: '🕉️' };
+    const colors = { career: '#9bdcff', finance: '#f5c16c', relationships: '#f472b6', health: '#4ade80', spiritual: '#c084fc' };
+    document.getElementById('catScores').innerHTML = Object.entries(cats).map(([key, val]) => `
+      <div class="cat-score-card">
+        <div class="cat-emoji">${icons[key] || '✦'}</div>
+        <div class="cat-name">${key}</div>
+        <div class="cat-bar-bg"><div class="cat-bar-fill" style="width:${val*10}%;background:${colors[key]||'var(--gold)'}"></div></div>
+        <div class="cat-val">${val}</div>
+      </div>
+    `).join('');
+  }
+}
+
+// ── Decision Assistant ───────────────────────────────────────
+async function askDecision(activity) {
+  // Highlight active button
+  document.querySelectorAll('.dec-btn').forEach(b => b.classList.remove('active'));
+  event.target.closest('.dec-btn').classList.add('active');
+
+  const city = document.getElementById('citySelect').value;
+  const payload = {
+    activity,
+    city,
+    user_rashi: activeProfile ? activeProfile.rashi : null,
+    user_nakshatra: activeProfile ? activeProfile.nakshatra : null,
+    ...(userCustomCoords || {})
+  };
+
+  try {
+    const res = await fetch('/api/panchang/decision', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload)
+    });
+    if (!res.ok) throw new Error(`HTTP ${res.status}`);
+    const data = await res.json();
+    renderVerdict(data);
+  } catch(e) {
+    console.error('Decision error:', e);
+  }
+}
+
+function renderVerdict(d) {
+  const box = document.getElementById('verdictBox');
+  const colorMap = { 'PROCEED': 'green', 'CAUTION': 'gold', 'AVOID': 'red' };
+  const emojiMap = { 'PROCEED': '✅', 'CAUTION': '⚠️', 'AVOID': '🚫' };
+  const col = colorMap[d.recommendation] || 'gold';
+
+  box.className = `verdict-box visible ${col}`;
+  box.innerHTML = `
+    <div class="verdict-badge ${col}">${emojiMap[d.recommendation] || '⚠️'} ${d.recommendation} — ${d.activity}</div>
+    <div class="verdict-summary">${d.summary || ''}</div>
+    <div class="verdict-reasons">
+      ${(d.reasons || []).map(r => `<div class="verdict-reason">✦ ${r}</div>`).join('')}
+      ${(d.cautions || []).map(r => `<div class="verdict-reason" style="color:var(--red)">⚠ ${r}</div>`).join('')}
+    </div>
+    <div class="verdict-next"><strong>Next Best:</strong> ${d.next_best_time || 'Check tomorrow at sunrise.'}</div>
+  `;
+}
+
+// ── Load Panchang API ────────────────────────────────────────
+async function loadPanchang() {
+  const citySelect = document.getElementById('citySelect');
+  const city = citySelect ? citySelect.value : 'Pune';
+  
+  const payload = userCustomCoords
+    ? { city, lat: userCustomCoords.lat, lon: userCustomCoords.lon }
+    : { city };
+
+  // Inject profile if in personalized mode
+  if (currentMode === 'personalized' && activeProfile) {
+    payload.user_rashi = activeProfile.rashi;
+    payload.user_nakshatra = activeProfile.nakshatra;
+  }
+
+  try {
+    const res = await fetch('/api/panchang', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload)
+    });
+    if (!res.ok) throw new Error(`HTTP ${res.status}`);
+    const data = await res.json();
+    updatePanchangUI(data);
+
+    // Render personalization if present
+    if (data.personalization) {
+      renderPersonalization(data.personalization);
+      document.getElementById('personalSection').classList.add('visible');
+    }
+  } catch(e) {
+    console.error('Panchang fetch failed:', e);
+  }
+}
+
+// ── GPS Geolocation ──────────────────────────────────────────
+function detectGPSLocation() {
+  if (!navigator.geolocation) {
+    alert('Geolocation is not supported by your browser.');
+    return;
+  }
+  navigator.geolocation.getCurrentPosition(pos => {
+    userCustomCoords = {
+      lat: pos.coords.latitude,
+      lon: pos.coords.longitude
+    };
+    alert(`GPS Location detected (${userCustomCoords.lat.toFixed(2)}°, ${userCustomCoords.lon.toFixed(2)}°). Refreshing Panchang!`);
+    loadPanchang();
+  }, err => {
+    alert('Unable to retrieve GPS coordinates. Defaulting to selected city.');
+  });
+}
+
+// ── Download .ics Calendar ───────────────────────────────────
+function downloadCalendarICS() {
+  const city = document.getElementById('citySelect').value;
+  window.location.href = `/api/panchang/calendar.ics?city=${encodeURIComponent(city)}&limit=45`;
+}
+
+function tagLabel(tag) {
+  const map = {
+    major: '🔥 Major Festival',
+    ekadashi: '🌿 Ekadashi',
+    purnima: '🌕 Purnima',
+    amavasya: '🌑 Amavasya',
+    vrat: '🕉️ Vrat'
+  };
+  return map[tag] || '🎊 Observance';
+}
+
+// ── Load Festivals ───────────────────────────────────────────
+async function loadFestivals() {
+  try {
+    const res = await fetch('/api/festivals/upcoming?limit=14');
+    if (!res.ok) throw new Error(`HTTP ${res.status}`);
+    const d = await res.json();
+    const festivals = d.festivals || [];
+    const container = document.getElementById('eventList');
+    if (!container) return;
+    
+    if (!festivals.length) {
+      container.innerHTML = '<div style="text-align:center;padding:16px;color:var(--text-dim)">No upcoming festivals found.</div>';
+      return;
+    }
+    
+    container.innerHTML = festivals.map(f => {
+      const parts = (f.date || '').split(' ');
+      const dayStr = parts[0] || '✦';
+      const monStr = (parts[1] && parts[2]) ? `${parts[1]} ${parts[2]}` : (parts[1] || f.date);
+      const tagClass = f.tag || 'vrat';
+      
+      return `
+      <div class="event-row ${f.is_today ? 'today' : ''}">
+        <div class="event-date-col">
+          <div class="event-cal-day">${dayStr}</div>
+          <div class="event-cal-mon">${monStr}</div>
+        </div>
+        <div class="event-icon-col">${f.icon || '🎉'}</div>
+        <div class="event-content">
+          <div class="event-name">
+            <span>${f.name}</span>
+          </div>
+          <div class="event-desc">${f.desc || f.description || ''}</div>
+          <div class="event-tags">
+            <span class="event-tag ${tagClass}">${tagLabel(tagClass)}</span>
+            ${f.tithi ? `<span class="event-tag">🌙 ${f.tithi}</span>` : ''}
+            ${f.nakshatra ? `<span class="event-tag">⭐ ${f.nakshatra}</span>` : ''}
+          </div>
+          ${f.remedies ? `<div class="event-remedy">🙏 ${f.remedies}</div>` : ''}
+        </div>
+      </div>`;
+    }).join('');
+  } catch(e) {
+    console.error('Festivals fetch error:', e);
+  }
+}
+
+// ── Boot ─────────────────────────────────────────────────────
+function changeLanguage(lang) {
+    if (!lang) return;
+    localStorage.setItem("lang", lang);
+    document.cookie = "lang=" + lang + "; path=/; max-age=31536000";
+
+    const parts = window.location.pathname.split('/').filter(Boolean);
+    const supported = ['en', 'hi', 'mr', 'gu', 'ta', 'te', 'kn', 'bn'];
+    if (parts.length > 0 && supported.includes(parts[0])) {
+        parts[0] = lang;
+        window.location.pathname = '/' + parts.join('/');
+    } else {
+        window.location.href = '/' + lang + window.location.pathname;
+    }
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+  const cookieMatch = document.cookie.match(/(?:^|; )lang=([^;]*)/);
+  const savedLang = cookieMatch ? cookieMatch[1] : (localStorage.getItem("lang") || "{{ lang }}");
+  const sel = document.getElementById("languageSelector");
+  if (sel) sel.value = savedLang;
+
+  // Load saved profiles
+  savedProfiles = JSON.parse(localStorage.getItem('vedic_profiles') || '[]');
+  renderProfileChips();
+
+  loadPanchang();
+  loadFestivals();
+});
+loadPanchang();
+loadFestivals();
+</script>
+<script src="/static/js/i18n.js"></script>
+</body>
+</html>

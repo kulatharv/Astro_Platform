@@ -1,0 +1,54 @@
+[importlinter]
+root_packages =
+    app
+    shared
+    modules
+    gateway
+    workers
+
+[importlinter:contract:1]
+name = Shared package is independent
+type = forbidden
+source_modules = shared
+forbidden_modules = modules, gateway, workers, app
+
+[importlinter:contract:2]
+name = Shared Veda is pure calculations
+type = forbidden
+source_modules = shared.veda
+forbidden_modules = app, modules, gateway, workers, shared.db, shared.cache
+
+[importlinter:contract:3]
+name = Modules independence except public APIs
+type = independence
+modules =
+    modules.auth
+    modules.kundali
+    modules.panchang
+    modules.prediction
+    modules.narrative
+    modules.horoscope
+    modules.blog
+    modules.feedback
+
+[importlinter:contract:4]
+name = Modules cross-import forbidden except via api
+type = forbidden
+source_modules =
+    modules.auth.engine
+    modules.kundali.engine
+    modules.panchang.engine
+    modules.prediction.engine
+    modules.narrative.engine
+    modules.horoscope.engine
+    modules.blog.engine
+    modules.feedback.engine
+forbidden_modules =
+    modules.auth.engine
+    modules.kundali.engine
+    modules.panchang.engine
+    modules.prediction.engine
+    modules.narrative.engine
+    modules.horoscope.engine
+    modules.blog.engine
+    modules.feedback.engine

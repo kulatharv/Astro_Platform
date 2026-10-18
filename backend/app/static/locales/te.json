@@ -1,0 +1,49 @@
+{
+  "language.name": "తెలుగు",
+  "navbar.brand": "ఆస్ట్రోలాజిక్",
+  "navbar.home": "హోమ్",
+  "navbar.kundali": "జాతకం",
+  "navbar.prediction": "భవిష్యవాణి",
+  "navbar.panchang": "పంచాంగం",
+  "navbar.horoscope": "రాశి ఫలాలు",
+  "navbar.blogs": "బ్లాగులు",
+  "navbar.about": "మా గురించి",
+  "navbar.login": "లాగిన్",
+  "navbar.signup": "సైన్ అప్",
+  "navbar.profile": "ప్రొఫైల్",
+  "navbar.admin": "అడ్మిన్",
+  "navbar.logout": "లాగ్ అవుట్",
+
+  "home.title": "ఆస్ట్రోలాజిక్ AI — వేద జ్యోతిష్య ప్లాట్‌ఫారమ్",
+  "home.subtitle": "వేద జ్ఞానం మరియు ఆర్టిఫిషియల్ ఇంటెలిజెన్స్ ద్వారా మీ జీవితాన్ని మెరుగుపరచుకోండి.",
+  "home.cta_kundali": "జాతకం నివేదిక",
+  "home.cta_prediction": "AI జీవిత భవిష్యవాణి",
+  "home.cta_panchang": "నేటి పంచాంగం",
+
+  "kundali.title": "ఉచిత వేద జాతకం",
+  "kundali.subtitle": "ఖచ్చితమైన గ్రహ స్థానాలు, లగ్న చక్రం, నవాంశ D9, దశ మరియు దోష విశ్లేషణ.",
+  "kundali.form.title": "జనన వివరాలను నమోదు చేయండి",
+  "kundali.form.name": "పూర్తి పేరు",
+  "kundali.form.date": "జన్మ తేదీ",
+  "kundali.form.time": "జన్మ సమయం",
+  "kundali.form.city": "జన్మ నగరం",
+  "kundali.form.submit": "జాతకం పొందండి",
+  "kundali.download_pdf": "PDF నివేదిక డౌన్‌లోడ్ చేయండి",
+
+  "prediction.title": "AI వివాహం మరియు కెరీర్ భవిష్యవాణి",
+  "prediction.subtitle": "వేద గ్రహ విశ్లేషణ ద్వారా జీవిత రంగాల విశ్లేషణ.",
+  "prediction.form.submit": "భవిష్యవాణి చూడండి",
+
+  "panchang.title": "దైనందిన వేద పంచాంగం",
+  "panchang.subtitle": "తిథి, నక్షత్రం, యోగం, కరణం, సూర్యోదయం మరియు శుభ ముహూర్తాలు.",
+
+  "horoscope.title": "దైనందిన రాశి ఫలాలు",
+  "horoscope.subtitle": "అన్ని 12 రాశుల దైనందిన మార్గదర్శకత్వం.",
+
+  "common.submit": "సమర్పించండి",
+  "common.generate": "సృష్టించండి",
+  "common.save": "సేవ్ చేయండి",
+  "common.loading": "లోడ్ అవుతోంది...",
+  "common.error": "లోపం సంభవించింది. దయచేసి మళ్లీ ప్రయత్నించండి.",
+  "common.language": "భాష"
+}

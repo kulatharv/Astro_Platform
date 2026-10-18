@@ -1,0 +1,49 @@
+{
+  "language.name": "தமிழ்",
+  "navbar.brand": "ஆஸ்ட்ரோலாஜிக்",
+  "navbar.home": "முகப்பு",
+  "navbar.kundali": "ஜாதகம்",
+  "navbar.prediction": "பலாபலன்கள்",
+  "navbar.panchang": "பஞ்சாங்கம்",
+  "navbar.horoscope": "இராசி பலன்",
+  "navbar.blogs": "வலைப்பதிவு",
+  "navbar.about": "எங்களைப் பற்றி",
+  "navbar.login": "உள்நுழைவு",
+  "navbar.signup": "பதிவு செய்ய",
+  "navbar.profile": "சுயவிவரம்",
+  "navbar.admin": "நிர்வாகி",
+  "navbar.logout": "வெளியேறு",
+
+  "home.title": "ஆஸ்ட்ரோலாஜிக் AI — வேத ஜோதிட தளம்",
+  "home.subtitle": "வேத அறிவு மற்றும் செயற்கை நுண்ணறிவு மூலம் உங்கள் வாழ்க்கையை மேம்படுத்துங்கள்.",
+  "home.cta_kundali": "ஜாதகம் கணிக்க",
+  "home.cta_prediction": "AI வாழ்க்கை கணிப்புகள்",
+  "home.cta_panchang": "இன்றைய பஞ்சாங்கம்",
+
+  "kundali.title": "இலவச வேத ஜாதகம்",
+  "kundali.subtitle": "துல்லியமான கிரக நிலைகள், லக்ன சக்கரம், நவாம்சம் D9, தசா புத்தி மற்றும் தோஷ பகுப்பாய்வு.",
+  "kundali.form.title": "பிறப்பு விவரங்களை உள்ளிடவும்",
+  "kundali.form.name": "முழு பெயர்",
+  "kundali.form.date": "பிறந்த தேதி",
+  "kundali.form.time": "பிறந்த நேரம்",
+  "kundali.form.city": "பிறந்த ஊர்",
+  "kundali.form.submit": "ஜாதகம் கணிக்க",
+  "kundali.download_pdf": "PDF அறிக்கையை பதிவிறக்கவும்",
+
+  "prediction.title": "AI திருமணம் மற்றும் தொழில் கணிப்புகள்",
+  "prediction.subtitle": "வேத கிரக நிலைகள் மற்றும் AI மூலம் வாழ்க்கை பகுப்பாய்வு.",
+  "prediction.form.submit": "கணிப்புகளைக் காண்க",
+
+  "panchang.title": "தினசரி வேத பஞ்சாங்கம்",
+  "panchang.subtitle": "திதி, நட்சத்திரம், யோகம், கரணம், சூரியோதயம் மற்றும் நல்ல நேரம்.",
+
+  "horoscope.title": "தினசரி இராசி பலன்",
+  "horoscope.subtitle": "12 இராசிகளுக்கும் தினசரி வழிகாட்டுதல்.",
+
+  "common.submit": "சமர்ப்பிக்கவும்",
+  "common.generate": "உருவாக்கவும்",
+  "common.save": "சேமிக்கவும்",
+  "common.loading": "ஏற்றப்படுகிறது...",
+  "common.error": "பிழை ஏற்பட்டது. மீண்டும் முயற்சிக்கவும்.",
+  "common.language": "மொழி"
+}

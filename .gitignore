@@ -211,5 +211,11 @@ last_chart.json
 kundali_report.pdf
 Backup/
 
-
 *.db
+*.sqlite
+*.sqlite3
+astrologic.db
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db

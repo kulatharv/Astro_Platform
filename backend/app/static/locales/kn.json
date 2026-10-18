@@ -1,0 +1,49 @@
+{
+  "language.name": "ಕನ್ನಡ",
+  "navbar.brand": "ಆಸ್ಟ್ರೋಲಾಜಿಕ್",
+  "navbar.home": "ಮುಖಪುಟ",
+  "navbar.kundali": "ಜಾತಕ",
+  "navbar.prediction": "ಭವಿಷ್ಯವಾಣಿ",
+  "navbar.panchang": "ಪಂಚಾಂಗ",
+  "navbar.horoscope": "ರಾಶಿ ಭವಿಷ್ಯ",
+  "navbar.blogs": "ಬ್ಲಾಗ್‌ಗಳು",
+  "navbar.about": "ನಮ್ಮ ಬಗ್ಗೆ",
+  "navbar.login": "ಲಾಗಿನ್",
+  "navbar.signup": "ಸೈನ್ ಅಪ್",
+  "navbar.profile": "ಪ್ರೊಫೈಲ್",
+  "navbar.admin": "ಅಡ್ಮಿನ್",
+  "navbar.logout": "ಲಾಗ್ ಔಟ್",
+
+  "home.title": "ಆಸ್ಟ್ರೋಲಾಜಿಕ್ AI — ವೈದಿಕ ಜ್ಯೋತಿಷ್ಯ ವೇದಿಕೆ",
+  "home.subtitle": "ವೈದಿಕ ಜ್ಞಾನ ಮತ್ತು ಕೃತಕ ಬುದ್ಧಿಮತ್ತೆಯ ಮೂಲಕ ನಿಮ್ಮ ಜೀವನವನ್ನು ಸಮೃದ್ಧಗೊಳಿಸಿ.",
+  "home.cta_kundali": "ಜಾತಕ ತಯಾರಿಸಿ",
+  "home.cta_prediction": "AI ಜೀವನ ಭವಿಷ್ಯವಾಣಿ",
+  "home.cta_panchang": "ಇಂದಿನ ಪಂಚಾಂಗ",
+
+  "kundali.title": "ಉಚಿತ ವೈದಿಕ ಜಾತಕ",
+  "kundali.subtitle": "ನಿಖರ ಗ್ರಹಗಳ ಸ್ಥಾನ, ಲಗ್ನ ಪಟ್ಟಿ, ನವಾಂಶ D9, ಮಹಾದಶ ಮತ್ತು ದೋಷ ವಿಶ್ಲೇಷಣೆ.",
+  "kundali.form.title": "ಜನನ ವಿವರಗಳನ್ನು ನಮೂದಿಸಿ",
+  "kundali.form.name": "ಪೂರ್ಣ ಹೆಸರು",
+  "kundali.form.date": "ಹುಟ್ಟಿದ ದಿನಾಂಕ",
+  "kundali.form.time": "ಹುಟ್ಟಿದ ಸಮಯ",
+  "kundali.form.city": "ಹುಟ್ಟಿದ ನಗರ",
+  "kundali.form.submit": "ಜಾತಕ ಪಡೆಯಿರಿ",
+  "kundali.download_pdf": "PDF ವರದಿ ಡೌನ್‌ಲೋಡ್ ಮಾಡಿ",
+
+  "prediction.title": "AI ವಿವಾಹ ಮತ್ತು ವೃತ್ತಿ ಭವಿಷ್ಯವಾಣಿ",
+  "prediction.subtitle": "ವೈದಿಕ ಗ್ರಹಗಳ ವಿಶ್ಲೇಷಣೆಯ ಮೂಲಕ ಜೀವನ ಕ್ಷೇತ್ರಗಳ ವಿಶ್ಲೇಷಣೆ.",
+  "prediction.form.submit": "ಭವಿಷ್ಯವಾಣಿ ನೋಡಿ",
+
+  "panchang.title": "ದೈನಂದಿನ ವೈದಿಕ ಪಂಚಾಂಗ",
+  "panchang.subtitle": "ತಿಥಿ, ನಕ್ಷತ್ರ, ಯೋಗ, ಕರಣ, ಸೂರ್ಯೋದಯ ಮತ್ತು ಶುಭ ಮುಹೂರ್ತಗಳು.",
+
+  "horoscope.title": "ದೈನಂದಿನ ರಾಶಿ ಭವಿಷ್ಯ",
+  "horoscope.subtitle": "ಎಲ್ಲಾ 12 ರಾಶಿಗಳಿಗೆ ದೈನಂದಿನ ಮಾರ್ಗದರ್ಶನ.",
+
+  "common.submit": "ಸಲ್ಲಿಸಿ",
+  "common.generate": "ರಚಿಸಿ",
+  "common.save": "ಉಳಿಸಿ",
+  "common.loading": "ಲೋಡ್ ಆಗುತ್ತಿದೆ...",
+  "common.error": "ದೋಷ ಸಂಭವಿಸಿದೆ. ದಯವಿಟ್ಟು ಮತ್ತೆ ಪ್ರಯತ್ನಿಸಿ.",
+  "common.language": "ಭಾಷೆ"
+}

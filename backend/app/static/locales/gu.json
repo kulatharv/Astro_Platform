@@ -1,0 +1,49 @@
+{
+  "language.name": "ગુજરાતી",
+  "navbar.brand": "એસ્ટ્રોલોજિક",
+  "navbar.home": "મુખ્ય પૃષ્ઠ",
+  "navbar.kundali": "કુંડળી",
+  "navbar.prediction": "ભવિષ્યવાણી",
+  "navbar.panchang": "પંચાંગ",
+  "navbar.horoscope": "રાશિફળ",
+  "navbar.blogs": "બ્લોગ",
+  "navbar.about": "અમારા વિશે",
+  "navbar.login": "લૉગિન",
+  "navbar.signup": "સાઇન અપ",
+  "navbar.profile": "પ્રોફાઇલ",
+  "navbar.admin": "એડમિન",
+  "navbar.logout": "લૉગ આઉટ",
+
+  "home.title": "એસ્ટ્રોલોજિક AI — વૈદિક જ્યોતિષ પ્લેટફોર્મ",
+  "home.subtitle": "વૈદિક જ્ઞાન અને આર્ટિફિશિયલ ઈન્ટેલિજન્સ દ્વારા તમારા જીવનને સમૃદ્ધ બનાવો.",
+  "home.cta_kundali": "કુંડળી બનાવો",
+  "home.cta_prediction": "AI જીવન ભવિષ્યવાણી",
+  "home.cta_panchang": "આજનું પંચાંગ",
+
+  "kundali.title": "મફત વૈદિક જન્મ કુંડળી",
+  "kundali.subtitle": "સચોટ ગ્રહ સ્થિતિ, લગ્ન ચાર્ટ, નવમાંશ D9, દશા અને દોષ વિશ્લેષણ.",
+  "kundali.form.title": "જન્મ વિગતો દાખલ કરો",
+  "kundali.form.name": "પૂરું નામ",
+  "kundali.form.date": "જન્મ તારીખ",
+  "kundali.form.time": "જન્મ સમય",
+  "kundali.form.city": "જન્મ શહેર",
+  "kundali.form.submit": "કુંડળી મેળવો",
+  "kundali.download_pdf": "PDF રિપોર્ટ ડાઉનલોડ કરો",
+
+  "prediction.title": "AI લગ્ન અને કરિયર ભવિષ્યવાણી",
+  "prediction.subtitle": "વૈદિક ગ્રહ વિશ્લેષણ દ્વારા જીવનના ક્ષેત્રોનું વિશ્લેષણ.",
+  "prediction.form.submit": "ભવિષ્યવાણી જુઓ",
+
+  "panchang.title": "દૈનિક વૈદિક પંચાંગ",
+  "panchang.subtitle": "તિથિ, નક્ષત્ર, યોગ, કરણ, સૂર્યોદય અને શુભ મુહૂર્ત.",
+
+  "horoscope.title": "દૈનિક રાશિફળ",
+  "horoscope.subtitle": "તમામ 12 રાશિઓ માટે દૈનિક માર્ગદર્શન.",
+
+  "common.submit": "સબમિટ કરો",
+  "common.generate": "બનાવો",
+  "common.save": "સાચવો",
+  "common.loading": "લોડ થઈ રહ્યું છે...",
+  "common.error": "ભૂલ આવી. કૃપા કરીને ફરી પ્રયાસ કરો.",
+  "common.language": "ભાષા"
+}

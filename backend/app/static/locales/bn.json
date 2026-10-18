@@ -1,0 +1,49 @@
+{
+  "language.name": "বাংলা",
+  "navbar.brand": "অ্যাস্ট্রোলজিক",
+  "navbar.home": "হোম",
+  "navbar.kundali": "কুষ্ঠি",
+  "navbar.prediction": "ভবিষ্যদ্বাণী",
+  "navbar.panchang": "পঞ্জিকা",
+  "navbar.horoscope": "রাশিফল",
+  "navbar.blogs": "ব্লগ",
+  "navbar.about": "আমাদের সম্পর্কে",
+  "navbar.login": "লগইন",
+  "navbar.signup": "সাইন আপ",
+  "navbar.profile": "প্রোফাইল",
+  "navbar.admin": "এডমিন",
+  "navbar.logout": "লগ আউট",
+
+  "home.title": "অ্যাস্ট্রোলজিক AI — বৈদিক জ্যোতিষ প্ল্যাটফর্ম",
+  "home.subtitle": "বৈদিক প্রজ্ঞা এবং কৃত্রিম বুদ্ধিমত্তার মাধ্যমে আপনার জীবনকে সমৃদ্ধ করুন।",
+  "home.cta_kundali": "কুষ্ঠি তৈরি করুন",
+  "home.cta_prediction": "AI জীবন ভবিষ্যদ্বাণী",
+  "home.cta_panchang": "আজকের পঞ্জিকা",
+
+  "kundali.title": "বিনামূল্যে বৈদিক জন্ম কুষ্ঠি",
+  "kundali.subtitle": "সঠিক গ্রহ অবস্থান, লগ্ন চার্ট, নবমাংশ D9, মহাদশ এবং দোষ বিশ্লেষণ।",
+  "kundali.form.title": "জন্ম বিবরণ লিখুন",
+  "kundali.form.name": "সম্পূর্ণ নাম",
+  "kundali.form.date": "জন্ম তারিখ",
+  "kundali.form.time": "জন্ম সময়",
+  "kundali.form.city": "জন্ম শহর",
+  "kundali.form.submit": "কুষ্ঠি পান",
+  "kundali.download_pdf": "PDF রিপোর্ট ডাউনলোড করুন",
+
+  "prediction.title": "AI বিবাহ এবং ক্যারিয়ার ভবিষ্যদ্বাণী",
+  "prediction.subtitle": "বৈদিক গ্রহ বিশ্লেষণের মাধ্যমে জীবনের দশটি ক্ষেত্রের গভীর বিশ্লেষণ।",
+  "prediction.form.submit": "ভবিষ্যদ্বাণী দেখুন",
+
+  "panchang.title": "দৈনিক বৈদিক পঞ্জিকা",
+  "panchang.subtitle": "তিথি, নক্ষত্র, যোগ, করণ, সূর্যোদয় এবং শুভ মুহূর্ত।",
+
+  "horoscope.title": "দৈনিক রাশিফল",
+  "horoscope.subtitle": "সব ১২টি রাশির জন্য দৈনিক দিকনির্দেশনা।",
+
+  "common.submit": "জমা দিন",
+  "common.generate": "তৈরি করুন",
+  "common.save": "সংরক্ষণ করুন",
+  "common.loading": "লোড হচ্ছে...",
+  "common.error": "একটি ত্রুটি ঘটেছে। অনুগ্রহ করে আবার চেষ্টা করুন।",
+  "common.language": "ভাষা"
+}
